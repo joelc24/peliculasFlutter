@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/casting_cards.dart';
+
 class DetailsScreen extends StatelessWidget {
   const DetailsScreen({Key? key}) : super(key: key);
 
@@ -18,6 +20,10 @@ class DetailsScreen extends StatelessWidget {
           SliverList(
             delegate: SliverChildListDelegate([
              const _PosterAndTitle(),
+             const _Overview(),
+             const _Overview(),
+             const _Overview(),
+             const CastingCards(),
             ]),
           ),
         ],
@@ -99,6 +105,21 @@ class _PosterAndTitle extends StatelessWidget {
             ],
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _Overview extends StatelessWidget {
+  const _Overview({ Key? key }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+      child: Text("Laboris dolor minim culpa voluptate esse velit consequat consequat reprehenderit aliquip anim. Consequat eu Lorem eu pariatur Lorem duis fugiat dolor aute incididunt dolor deserunt cupidatat. Non aliquip officia ipsum ad pariatur sit velit reprehenderit pariatur ullamco. Officia irure cillum dolor anim in cupidatat. Est sunt esse ut ut consectetur magna non deserunt sunt aliquip. Do aliquip fugiat ex magna.",
+      textAlign: TextAlign.justify,
+      style: Theme.of(context).textTheme.subtitle1,
       ),
     );
   }
