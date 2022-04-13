@@ -13,7 +13,7 @@ class MovieSlider extends StatelessWidget {
         children:  <Widget>[
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 20),
-            child: Text('MovieSlider', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+            child: Text('Populares', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
           ),
 
           const SizedBox(height: 5),
