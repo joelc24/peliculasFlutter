@@ -27,12 +27,6 @@ class _MovieSliderState extends State<MovieSlider> {
   }
 
   @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
@@ -79,7 +73,7 @@ class _MoviePoster extends StatelessWidget {
 
            GestureDetector(
              onTap: () {
-              Navigator.pushNamed(context, 'details', arguments: 'movie-instance');
+              Navigator.pushNamed(context, 'details', arguments: movie);
             },
              child: ClipRRect(
               borderRadius: BorderRadius.circular(20),

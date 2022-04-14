@@ -1,5 +1,4 @@
 
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
 
@@ -18,7 +17,6 @@ class MoviesProvider extends ChangeNotifier {
   int _popularPage = 0;
 
   MoviesProvider(){
-    print("MoviesProvider Inicializado");
 
     getOnDisplayMovies();
     getPopularMovies();
