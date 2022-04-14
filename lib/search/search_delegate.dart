@@ -35,7 +35,7 @@ class MovieSearchDelegate extends SearchDelegate{
     return const Text('Resultados');
   }
 
-  Widget _EmptyContainer(){
+  Widget _emptyContainer(){
     return Container(
         child: const Center(
           child: Icon(Icons.movie_creation_outlined, color: Colors.black38, size: 130,),
@@ -46,7 +46,7 @@ class MovieSearchDelegate extends SearchDelegate{
   @override
   Widget buildSuggestions(BuildContext context) {
     if(query.isEmpty) {
-      return _EmptyContainer();
+      return _emptyContainer();
     }
 
     final moviesProvider = Provider.of<MoviesProvider>(context);
@@ -55,7 +55,7 @@ class MovieSearchDelegate extends SearchDelegate{
       future: moviesProvider.searchMovie(query),
       builder: (_, AsyncSnapshot<List<Movie>> snapshot) {
 
-        if(!snapshot.hasData) return _EmptyContainer();
+        if(!snapshot.hasData) return _emptyContainer();
 
         final movies = snapshot.data!;
 
@@ -81,12 +81,18 @@ class _MovieItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    movie.heroId = '${movie.id}-search';
+
     return ListTile(
-      leading: FadeInImage(
-        placeholder: const AssetImage('assets/no-image.jpg'), 
-        image: NetworkImage(movie.getPosterPath),
-        width: 50,
-        fit: BoxFit.contain
+      leading: Hero(
+        tag: movie.heroId!,
+        child: FadeInImage(
+          placeholder: const AssetImage('assets/no-image.jpg'), 
+          image: NetworkImage(movie.getPosterPath),
+          width: 50,
+          fit: BoxFit.contain
+        ),
       ),
       title: Text(movie.title),
       subtitle: Text(movie.releaseDate ?? ''),
