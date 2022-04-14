@@ -21,7 +21,7 @@ class CastingCards extends StatelessWidget {
 
         if(!snapshot.hasData) {
           return Container(
-            constraints: const BoxConstraints(maxWidth: 150),
+            constraints: const BoxConstraints(maxWidth: 180),
             height: 180,
             child: const Center(
               child: CupertinoActivityIndicator(),
@@ -36,9 +36,9 @@ class CastingCards extends StatelessWidget {
           width: double.infinity,
           height: 180,
           child: ListView.builder(
-            itemCount: 10,
+            itemCount: cast.length,
             scrollDirection: Axis.horizontal,
-            itemBuilder: (BuildContext _, int index) => const _CastCard(),
+            itemBuilder: (BuildContext _, int index) => _CastCard( actor: cast[index]),
           ),
         );
       },
@@ -49,7 +49,9 @@ class CastingCards extends StatelessWidget {
 }
 
 class _CastCard extends StatelessWidget {
-  const _CastCard({ Key? key }) : super(key: key);
+  const _CastCard({ Key? key, required this.actor }) : super(key: key);
+
+  final Cast actor;
 
   @override
   Widget build(BuildContext context) {
@@ -61,9 +63,9 @@ class _CastCard extends StatelessWidget {
         children:  [
           ClipRRect(
             borderRadius: BorderRadius.circular(20),
-            child: const FadeInImage(
-              placeholder: AssetImage('assets/no-image.jpg'),
-              image: NetworkImage('https://via.placeholder.com/150x300'),
+            child: FadeInImage(
+              placeholder: const AssetImage('assets/no-image.jpg'),
+              image: NetworkImage(actor.getProfilePath),
               width: 100,
               height: 140,
               fit: BoxFit.cover,
@@ -72,8 +74,8 @@ class _CastCard extends StatelessWidget {
 
           const SizedBox(height: 5),
 
-          const Text(
-            "Actor name",
+          Text(
+            actor.name,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.center,
